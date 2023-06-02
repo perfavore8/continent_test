@@ -9,13 +9,13 @@ export default {
     },
   },
   actions: {
-    async getProducts(context, { id }) {
+    async getProducts(context, { slug, city_id }) {
       const res = await fetch(
-        `https://nlstar.com/api/catalog3/v1/city/?id=${id}`
+        `https://nlstar.com/ru/api/catalog3/v1/menutags/${slug}/?city_id=${city_id}`
       );
       const json = await res.json();
 
-      context.commit("products", json.data);
+      context.commit("updateProducts", json.products);
     },
   },
 };
