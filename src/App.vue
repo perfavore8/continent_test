@@ -62,6 +62,8 @@ export default {
 @import url("@/assets/Futura_PT/stylesheet.css");
 * {
   box-sizing: border-box;
+  font-family: "Futura PT";
+  font-style: normal;
 }
 html,
 body,
@@ -148,12 +150,9 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
 }
 body {
-  font-family: "Futura PT";
-  font-style: normal;
 }
 /* HTML5 display-role reset for older browsers */
 article,
