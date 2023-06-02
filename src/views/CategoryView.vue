@@ -2,7 +2,11 @@
   <main class="main">
     <CategorySideBar :list="subCats" />
     <div class="grid">
-      <CategoryGridCard v-for="item in products" :key="item" :item="item" />
+      <CategoryGridCard
+        v-for="item in filteredProducts"
+        :key="item"
+        :item="item"
+      />
     </div>
   </main>
 </template>
@@ -23,11 +27,22 @@ export default {
     products() {
       return this.$store.state.products.products;
     },
+    filteredProducts() {
+      return this.products.filter((product) => {
+        const tags = [];
+        product.tags.forEach((tag) => tags.push(tag.slug));
+        if (!this.selectedSubCat) return true;
+        return tags.includes(this.selectedSubCat);
+      });
+    },
     subCats() {
       return this.$store.state.categories.selectedCategory?.children;
     },
     selectedCat() {
       return this.$route.params.catName;
+    },
+    selectedSubCat() {
+      return this.$route.params.subCatName;
     },
   },
   created() {
@@ -60,7 +75,7 @@ export default {
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
   gap: 24px;
 }
 </style>
