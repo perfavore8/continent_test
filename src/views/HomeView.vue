@@ -23,6 +23,7 @@ export default {
     },
   },
   async mounted() {
+    // this.$store.dispatch("getLocation", { id: 1 });
     await this.$store.dispatch("getCategories", { city_id: 1 });
   },
 };

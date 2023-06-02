@@ -14,11 +14,49 @@
           />
         </svg>
       </div>
-      <span class="location__span">Новосибирск</span>
+      <span class="location__span" @click="toggleLocationModal(true)">
+        {{ location.city }}
+      </span>
     </div>
   </header>
   <router-view />
+  <transition name="fade1">
+    <LocationModal
+      v-if="showLocationModal"
+      @close="() => toggleLocationModal(false)"
+    />
+  </transition>
 </template>
+
+<script>
+import LocationModal from "@/components/LocationModal.vue";
+export default {
+  components: { LocationModal },
+  data() {
+    return {
+      showLocationModal: false,
+    };
+  },
+  computed: {
+    location() {
+      return this.$store.state.location.location;
+    },
+  },
+  mounted() {
+    const localLocation = JSON.parse(localStorage.getItem("location"));
+    if (Object.keys(localLocation).length) {
+      this.$store.commit("updateLocation", localLocation);
+    } else {
+      this.$store.dispatch("getLocation", { id: 1 });
+    }
+  },
+  methods: {
+    toggleLocationModal(val) {
+      this.showLocationModal = val;
+    },
+  },
+};
+</script>
 
 <style>
 @import url("@/assets/Futura_PT/stylesheet.css");
@@ -172,9 +210,19 @@ header {
 .location__marker {
 }
 .location__span {
+  cursor: pointer;
   font-weight: 600;
   font-size: 15px;
   line-height: 24px;
   color: #272727;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: scale(0.5);
 }
 </style>
