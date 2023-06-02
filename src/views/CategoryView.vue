@@ -21,14 +21,16 @@
     </button>
     <span class="header__category">{{ selectedCatName }}</span>
   </header>
-  <main class="main">
-    <CategorySideBar :list="subCats" />
+  <main class="main" :class="{ 'main_no-subcats': subCats.length < 2 }">
+    <CategorySideBar :list="subCats" v-if="subCats.length > 1" />
     <div class="grid">
-      <CategoryGridCard
-        v-for="item in filteredProducts"
-        :key="item"
-        :item="item"
-      />
+      <transition-group name="list" mode="out-in">
+        <CategoryGridCard
+          v-for="item in filteredProducts"
+          :key="item"
+          :item="item"
+        />
+      </transition-group>
     </div>
   </main>
 </template>
@@ -103,6 +105,10 @@ export default {
   grid-template-columns: min-content auto;
   gap: 34px;
 }
+.main_no-subcats {
+  grid-template-columns: auto;
+  justify-content: center;
+}
 .grid {
   width: 100%;
   display: grid;
@@ -132,5 +138,17 @@ export default {
   font-size: 44px;
   line-height: 44px;
   color: #272727;
+}
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.2s ease-out;
+}
+.list-enter-active {
+  transition-delay: 0.2s;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
 }
 </style>
