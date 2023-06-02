@@ -1,22 +1,17 @@
 <template>
-  <header>
-    <div class="location">
-      <div class="location__marker">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill="#dadada"
-            d="M12 11.5A2.5 2.5 0 0 1 9.5 9A2.5 2.5 0 0 1 12 6.5A2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Z"
-          />
-        </svg>
+  <main class="main">
+    <h2 class="main__header">Категории товаров</h2>
+    <div class="grid">
+      <div class="grid__item item" v-for="cat in categories" :key="cat.slug">
+        <div class="item__section">
+          <h3 class="item__name" :style="{ color: cat.text_color }">
+            {{ cat.name }}
+          </h3>
+        </div>
+        <img class="item__img" :src="cat.image" />
       </div>
-      <span class="location__span">Новосибирск</span>
     </div>
-  </header>
+  </main>
 </template>
 
 <script>
@@ -34,29 +29,46 @@ export default {
 </script>
 
 <style scoped>
-header {
-  background: #ffffff;
-  box-shadow: 0px 2px 4px rgba(39, 39, 39, 0.1);
-  height: 4.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.location {
+.main {
   width: 67%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
+  margin: 35px auto;
 }
-.location__marker {
-}
-.location__span {
-  font-family: "Futura PT";
-  font-style: normal;
+.main__header {
   font-weight: 600;
-  font-size: 15px;
-  line-height: 24px;
+  font-size: 44px;
+  line-height: 44px;
+  margin-bottom: 20px;
+
+  color: #272727;
+}
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+  gap: 20px;
+}
+.grid__item {
+  position: relative;
+}
+.item {
+  border-radius: 5px;
+}
+.item__section {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.item__name {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 28px;
+}
+.item__img {
+  width: 100%;
+  border-radius: inherit;
 }
 </style>
