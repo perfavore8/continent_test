@@ -5,7 +5,9 @@
     <span class="card__present-name">{{ item.present_name }}</span>
     <span class="card__comment-name">{{ item.comment_name }}</span>
     <span class="card__price">{{ item.price }} ₽</span>
-    <button class="card__btn">Подтвердить</button>
+    <button class="card__btn" :disabled="outOfStock">
+      {{ outOfStock ? "Нет в наличии" : "В корзину" }}
+    </button>
   </div>
 </template>
 
@@ -13,6 +15,11 @@
 export default {
   props: {
     item: { type: Object, required: true },
+  },
+  computed: {
+    outOfStock() {
+      return !(this.item.allowed && this.item.available);
+    },
   },
 };
 </script>
