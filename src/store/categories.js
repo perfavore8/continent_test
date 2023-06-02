@@ -10,6 +10,10 @@ export default {
     },
     updateSelectedCategory(state, value) {
       state.selectedCategory = { ...value };
+      localStorage.setItem(
+        "selectedCategory",
+        JSON.stringify(state.selectedCategory)
+      );
     },
   },
   actions: {
