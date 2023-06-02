@@ -2,19 +2,21 @@
   <main class="main">
     <h2 class="main__header">Категории товаров</h2>
     <div class="grid">
-      <div
-        class="grid__item item"
-        v-for="cat in categories"
-        :key="cat.slug"
-        @click="selectCat(cat)"
-      >
-        <div class="item__section">
-          <h3 class="item__name" :style="{ color: cat.text_color }">
-            {{ cat.name }}
-          </h3>
+      <transition-group name="list" mode="out-in">
+        <div
+          class="grid__item item"
+          v-for="cat in categories"
+          :key="cat.slug"
+          @click="selectCat(cat)"
+        >
+          <div class="item__section">
+            <h3 class="item__name" :style="{ color: cat.text_color }">
+              {{ cat.name }}
+            </h3>
+          </div>
+          <img class="item__img" :src="cat.image" />
         </div>
-        <img class="item__img" :src="cat.image" />
-      </div>
+      </transition-group>
     </div>
   </main>
 </template>
@@ -83,5 +85,17 @@ export default {
 .item__img {
   width: 100%;
   border-radius: inherit;
+}
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.2s ease-out;
+}
+.list-enter-active {
+  transition-delay: 0.2s;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
 }
 </style>
