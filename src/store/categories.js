@@ -1,11 +1,15 @@
 export default {
   state: {
     categories: [],
+    selectedCategory: {},
   },
   getters: {},
   mutations: {
     updateCategoies(state, value) {
       if (value.length) state.categories = [...value];
+    },
+    updateSelectedCategory(state, value) {
+      state.selectedCategory = { ...value };
     },
   },
   actions: {
