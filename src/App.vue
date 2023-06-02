@@ -1,13 +1,30 @@
 <template>
-  <!-- <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav> -->
+  <header>
+    <div class="location">
+      <div class="location__marker">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="#dadada"
+            d="M12 11.5A2.5 2.5 0 0 1 9.5 9A2.5 2.5 0 0 1 12 6.5A2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Z"
+          />
+        </svg>
+      </div>
+      <span class="location__span">Новосибирск</span>
+    </div>
+  </header>
   <router-view />
 </template>
 
 <style>
 @import url("@/assets/Futura_PT/stylesheet.css");
+* {
+  box-sizing: border-box;
+}
 html,
 body,
 div,
@@ -96,6 +113,10 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+body {
+  font-family: "Futura PT";
+  font-style: normal;
+}
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -131,5 +152,29 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+header {
+  background: #ffffff;
+  box-shadow: 0px 2px 4px rgba(39, 39, 39, 0.1);
+  height: 4.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.location {
+  width: 67%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.location__marker {
+}
+.location__span {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  color: #272727;
 }
 </style>
