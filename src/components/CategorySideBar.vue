@@ -13,7 +13,7 @@ export default {};
 
 <style scoped>
 .aside {
-  max-width: 300px;
+  width: 240px;
 }
 .aside__list {
   padding: 0;
