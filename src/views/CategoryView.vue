@@ -70,12 +70,13 @@ export default {
   width: 67%;
   margin: 35px auto;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: min-content auto;
   gap: 34px;
 }
 .grid {
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+  grid-template-columns: repeat(auto-fill, 275px);
   gap: 24px;
 }
 </style>

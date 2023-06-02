@@ -1,13 +1,17 @@
 <template>
   <div class="card">
-    <img :src="item.main_image_thumb_300" class="card__img" />
-    <span class="card__cat-name">{{ item.category?.name }}</span>
-    <span class="card__present-name">{{ item.present_name }}</span>
-    <span class="card__comment-name">{{ item.comment_name }}</span>
-    <span class="card__price">{{ item.price }} ₽</span>
-    <button class="card__btn" :disabled="outOfStock">
-      {{ outOfStock ? "Нет в наличии" : "В корзину" }}
-    </button>
+    <div class="card__top">
+      <img :src="item.main_image_thumb_300" class="card__img" />
+    </div>
+    <div class="card__bot">
+      <span class="card__cat-name">{{ item.category?.name }}</span>
+      <span class="card__present-name">{{ item.present_name }}</span>
+      <span class="card__comment-name">{{ item.comment_name }}</span>
+      <span class="card__price">{{ item.price }} ₽</span>
+      <button class="card__btn" :disabled="outOfStock">
+        {{ outOfStock ? "Нет в наличии" : "В корзину" }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -29,6 +33,13 @@ export default {
   background: #ffffff;
   box-shadow: 0px 2px 10px rgba(151, 151, 151, 0.2);
   border-radius: 0px 0px 5px 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.card__top,
+.card__bot {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,6 +70,7 @@ export default {
 }
 .card__comment-name {
   margin-bottom: 14px;
+  min-height: 20px;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
