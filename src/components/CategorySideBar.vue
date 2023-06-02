@@ -29,6 +29,10 @@ export default {
       return [obj, ...this.list];
     },
   },
+  mounted() {
+    if (this.$route.params.subCatName)
+      this.selectedSubCat = this.$route.params.subCatName;
+  },
   methods: {
     selectSubCat(val) {
       this.selectedSubCat = val;
