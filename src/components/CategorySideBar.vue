@@ -1,14 +1,41 @@
 <template>
   <aside class="aside">
     <ul class="list aside__list">
-      <li class="list__item list__item_selected">Все продукты</li>
-      <li class="list__item">1</li>
+      <li
+        class="list__item"
+        :class="{ list__item_selected: subCat.slug === selectedSubCat }"
+        v-for="subCat in subCats"
+        :key="subCat.slug"
+        @click="selectSubCat(subCat.slug)"
+      >
+        {{ subCat.name }}
+      </li>
     </ul>
   </aside>
 </template>
 
 <script>
-export default {};
+export default {
+  props: { list: { type: Array, required: false } },
+  data() {
+    return { selectedSubCat: "" };
+  },
+  computed: {
+    subCats() {
+      const obj = {
+        name: "Все продукты",
+        slug: "",
+      };
+      return [obj, ...this.list];
+    },
+  },
+  methods: {
+    selectSubCat(val) {
+      this.selectedSubCat = val;
+      this.$router.push({ name: "category", params: { subCatName: val } });
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -18,6 +45,7 @@ export default {};
 .aside__list {
   padding: 0;
   align-items: start;
+  gap: 0;
 }
 .list__item {
   padding: 8px 12px;
