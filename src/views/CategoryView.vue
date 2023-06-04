@@ -71,6 +71,9 @@ export default {
     selectedSubCat() {
       return this.$route.params.subCatName;
     },
+    locationId() {
+      return this.$store.state.location.location.id;
+    },
   },
   created() {
     const localSelectedCategory = JSON.parse(
@@ -83,15 +86,23 @@ export default {
       this.$router.push("/");
     } else {
       this.$store.commit("updateSelectedCategory", localSelectedCategory);
-      this.$store.dispatch("getProducts", {
-        city_id: this.city_id,
-        slug: this.selectedCat,
-      });
+      this.getProducts();
     }
+  },
+  watch: {
+    locationId() {
+      this.getProducts();
+    },
   },
   methods: {
     back() {
       this.$router.push("/");
+    },
+    getProducts() {
+      return this.$store.dispatch("getProducts", {
+        city_id: this.city_id,
+        slug: this.selectedCat,
+      });
     },
   },
 };

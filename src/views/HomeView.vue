@@ -28,15 +28,30 @@ export default {
     categories() {
       return this.$store.state.categories.categories;
     },
+    location() {
+      return this.$store.state.location.location;
+    },
+    locationId() {
+      return this.location.id;
+    },
   },
   async mounted() {
-    // this.$store.dispatch("getLocation", { id: 1 });
-    await this.$store.dispatch("getCategories", { city_id: 1 });
+    await this.getCategories();
+  },
+  watch: {
+    locationId() {
+      this.getCategories();
+    },
   },
   methods: {
     selectCat(cat) {
       this.$store.commit("updateSelectedCategory", cat);
       this.$router.push("/category/" + cat.slug);
+    },
+    getCategories() {
+      return this.$store.dispatch("getCategories", {
+        city_id: this.location.id,
+      });
     },
   },
 };

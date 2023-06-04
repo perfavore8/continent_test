@@ -17,10 +17,9 @@ export default {
     },
   },
   actions: {
-    async getCategories(context, { sity_id }) {
-      if (!sity_id) sity_id = 1;
+    async getCategories(context, { city_id }) {
       const res = await fetch(
-        `https://nlstar.com/ru/api/catalog3/v1/menutags/?sity_id=${sity_id}`
+        `https://nlstar.com/ru/api/catalog3/v1/menutags/?city_id=${city_id}`
       );
       const json = await res.json();
 

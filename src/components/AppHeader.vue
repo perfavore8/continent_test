@@ -43,7 +43,7 @@ export default {
   },
   mounted() {
     const localLocation = JSON.parse(localStorage.getItem("location"));
-    if (Object.keys(localLocation).length) {
+    if (localLocation && Object.keys(localLocation).length) {
       this.$store.commit("updateLocation", localLocation);
     } else {
       this.$store.dispatch("getLocation", { id: 1 });
