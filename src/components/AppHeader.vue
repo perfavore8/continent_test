@@ -73,6 +73,9 @@ header {
   flex-direction: row;
   align-items: center;
   gap: 8px;
+  @media (max-width: 767.98px) {
+    width: 92%;
+  }
 }
 .location__marker {
 }

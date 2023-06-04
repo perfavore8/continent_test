@@ -104,6 +104,10 @@ export default {
   display: grid;
   grid-template-columns: min-content auto;
   gap: 34px;
+  @media (max-width: 767.98px) {
+    width: 92%;
+    grid-template-columns: auto;
+  }
 }
 .main_no-subcats {
   grid-template-columns: auto;
@@ -114,6 +118,9 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fill, 275px);
   gap: 24px;
+  @media (max-width: 767.98px) {
+    justify-content: center;
+  }
 }
 .header {
   width: 67%;
@@ -122,6 +129,9 @@ export default {
   flex-direction: row;
   gap: 10px;
   align-items: center;
+  @media (max-width: 767.98px) {
+    width: 92%;
+  }
 }
 .header__btn {
   width: 30px;
@@ -138,6 +148,10 @@ export default {
   font-size: 44px;
   line-height: 44px;
   color: #272727;
+  @media (max-width: 767.98px) {
+    font-size: 24px;
+    line-height: 1;
+  }
 }
 .list-enter-active,
 .list-leave-active {

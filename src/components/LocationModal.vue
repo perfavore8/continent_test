@@ -176,6 +176,11 @@ export default {
   box-shadow: 0px 2px 10px rgba(151, 151, 151, 0.2);
   border-radius: 5px;
   min-width: 750px;
+  @media (max-width: 767.98px) {
+    min-width: 0;
+    width: 92%;
+    padding: 18px;
+  }
 }
 .section__header {
   font-weight: 600;
@@ -183,6 +188,7 @@ export default {
   line-height: 24px;
   color: #272727;
   margin-bottom: 12px;
+  margin-right: 40px;
 }
 .section__cross {
   cursor: pointer;
@@ -207,6 +213,10 @@ export default {
   display: flex;
   flex-direction: row;
   gap: 18px;
+  @media (max-width: 767.98px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 .wrapper__input {
   background: #ffffff;

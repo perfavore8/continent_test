@@ -46,6 +46,9 @@ export default {
 .main {
   width: 67%;
   margin: 35px auto;
+  @media (max-width: 767.98px) {
+    width: 92%;
+  }
 }
 .main__header {
   font-weight: 600;
@@ -58,7 +61,8 @@ export default {
 .grid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(275px, 0.8fr));
+  justify-content: center;
   gap: 20px;
 }
 .grid__item {
