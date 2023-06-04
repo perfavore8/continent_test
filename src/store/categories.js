@@ -1,3 +1,4 @@
+import axios from "axios";
 export default {
   state: {
     categories: [],
@@ -18,12 +19,12 @@ export default {
   },
   actions: {
     async getCategories(context, { city_id }) {
-      const res = await fetch(
+      const res = await axios.get(
         `https://nlstar.com/ru/api/catalog3/v1/menutags/?city_id=${city_id}`
       );
-      const json = await res.json();
+      const data = await res.data;
 
-      context.commit("updateCategoies", json.tags);
+      context.commit("updateCategoies", data.tags);
     },
   },
 };

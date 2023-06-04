@@ -1,3 +1,4 @@
+import axios from "axios";
 export default {
   state: {
     location: {},
@@ -11,20 +12,20 @@ export default {
   },
   actions: {
     async getLocation(context, { id }) {
-      const res = await fetch(
+      const res = await axios.get(
         `https://nlstar.com/api/catalog3/v1/city/?id=${id}`
       );
-      const json = await res.json();
+      const data = await res.data;
 
-      context.commit("updateLocation", json.data);
+      context.commit("updateLocation", data.data);
     },
     async getLocationsForChange(context, { term }) {
-      const res = await fetch(
+      const res = await axios.get(
         `https://nlstar.com/api/catalog3/v1/city/?term=${term}&country=ru`
       );
-      const json = await res.json();
+      const data = await res.data;
 
-      return json.data;
+      return data.data;
     },
   },
 };
